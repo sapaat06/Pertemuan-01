@@ -3,7 +3,7 @@
 **Informasi Mahasiswa:** 
 * **Nama:** Sapaat
 * **NIM:** 2406080 
-* **Kelas/Prodi:** Teknik Informatika - ITG 
+* **Kelas/Prodi:** Kelas C Teknik Informatika - ITG 
 * **Kode MK:** IFRWP5151
  --- 
  ## Catatan Modul 1 
