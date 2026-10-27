@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul 2 - Web Portofolio Mahasiswa</title>
+    <link rel="stylesheet" href="proyek.css">
+    <script src="proyek.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Proyek Saya</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="kontak.html">Hubungi Saya</a></li>
+                <li><a href="propil.html">Profil Saya</a></li>
+                <li><a href="proyek.html">Proyek</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- FITUR 1: formulir input proyek -->
+        <section>
+            <h2 id="judul-form">Tambah Proyek</h2>
+            <form id="form-proyek" novalidate>
+                <p>
+                    <label for="judul">Judul Proyek:</label><br>
+                    <input type="text" id="judul" name="judul">
+                    <span class="error" id="err-judul"></span>
+                </p>
+                <p>
+                    <label for="kategori">Kategori:</label><br>
+                    <select id="kategori" name="kategori">
+                        <option>Web App</option>
+                        <option>Mobile App</option>
+                        <option>Desktop App</option>
+                        <option>Desain UI/UX</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="anggaran">Estimasi Anggaran (Rp):</label><br>
+                    <input type="number" id="anggaran" name="anggaran">
+                    <span class="error" id="err-anggaran"></span>
+                </p>
+                <p>
+                    <label class="centang">
+                        <input type="checkbox" id="selesai" name="selesai"> Sudah Selesai
+                    </label>
+                </p>
+                <p>
+                    <button type="submit" id="tombol-simpan">Tambah proyek</button>
+                    <button type="button" id="batal" hidden>Batal edit</button>
+                </p>
+            </form>
+        </section>
+
+        <!-- Kartu statistik: diisi oleh proyek.js -->
+        <div class="statistik">
+            <div class="stat"><strong id="stat-total">0</strong><span>Total Proyek</span></div>
+            <div class="stat"><strong id="stat-selesai">0</strong><span>Selesai</span></div>
+            <div class="stat"><strong id="stat-proses">0</strong><span>Dalam Pengerjaan</span></div>
+            <div class="stat"><strong id="stat-anggaran">Rp0</strong><span>Total Anggaran</span></div>
+        </div>
+
+        <!-- FITUR 2: judul daftar + pencarian real-time -->
+        <div class="bar-daftar">
+            <h2>Daftar Proyek</h2>
+            <input type="search" id="cari" placeholder="Cari nama proyek..." aria-label="Cari nama proyek">
+        </div>
+
+        <!-- FITUR 3: daftar proyek + tombol Ubah Status dan Hapus, diisi oleh proyek.js -->
+        <div id="daftar"></div>
+    </main>
+
+    <aside>
+        <h3>Link Proyek</h3>
+        <p><a href="https://github.com/sapaat06/Pertemuan-01.git" target="_blank" rel="noopener">https://github.com/sapaat/kalkulator-python</a></p>
+    </aside>
+
+    <footer>
+        <p>&copy; 2026 Portofolio mahasiswa - All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

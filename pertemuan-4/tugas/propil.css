@@ -1,0 +1,168 @@
+/* =====================================================================
+   VARIABEL WARNA
+   Semua warna disimpan di sini. Mau ganti warna seluruh halaman?
+   Cukup ubah kode warna (#xxxxxx) di bawah ini. Bagian lain tidak perlu disentuh.
+   Cara pakai di tempat lain: var(--nama)  contoh: color: var(--gelap);
+   ===================================================================== */
+:root {
+    --gelap: #0E1F1B;   /* hijau-hitam: latar header, tombol kirim, teks utama */
+    --latar: #F5F3EE;   /* krem hangat: latar belakang halaman */
+    --garis: #E6E2D8;   /* abu-krem muda: garis pemisah dan border kartu */
+    --abu:   #6B7570;   /* abu: teks kecil / keterangan */
+    --aksen: #C8F169;   /* lime: warna sorotan (hover menu, teks tombol) */
+}
+
+/* =====================================================================
+   DASAR (berlaku untuk seluruh halaman)
+   ===================================================================== */
+
+/* Reset: hapus jarak bawaan browser supaya kita atur sendiri.
+   box-sizing: border-box = padding dan border dihitung di dalam lebar elemen,
+   jadi elemen tidak "membengkak" melewati lebar yang kita tentukan. */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    max-width: 800px;                  /* lebar maksimal konten */
+    margin: 0 auto;                    /* "auto" kiri-kanan = konten berada di tengah layar */
+    padding: 24px;                     /* jarak krem di sekeliling konten */
+    background: var(--latar);          /* WARNA LATAR halaman */
+    color: var(--gelap);               /* WARNA TEKS default */
+    font-family: system-ui, sans-serif;/* JENIS FONT teks biasa: font bawaan sistem (Segoe UI, SF Pro, dll) */
+    line-height: 1.6;                  /* jarak antar baris. 1.6 = 1,6 kali tinggi huruf, nyaman dibaca */
+}
+
+/* Garis <hr> di HTML disembunyikan karena pemisah sudah dibuat oleh kartu. */
+hr { display: none; }
+
+/* =====================================================================
+   HEADER (kotak gelap di atas) + MENU
+   ===================================================================== */
+
+/* "body > header" = hanya <header> yang langsung di bawah <body>.
+   <header> di dalam <article> tidak ikut terkena aturan ini. */
+body > header {
+    padding: 40px;                 /* ruang di dalam kotak, antara tepi dan teks */
+    background: var(--gelap);      /* WARNA LATAR kotak header */
+    color: white;                  /* WARNA TEKS di dalam header */
+    border-radius: 16px;           /* kebulatan sudut. 0 = kotak tajam, makin besar makin bulat */
+}
+
+/* FONT JUDUL: Georgia adalah font serif (huruf berkaki, bergaya buku).
+   Kalau Georgia tidak ada di perangkat, browser pakai serif lain.
+   font-weight: 400 = tebal normal (bawaan judul adalah tebal 700). */
+h1, h2 { font-family: Georgia, serif; font-weight: 400; }
+
+h1 {
+    margin-bottom: 20px;           /* jarak dari judul ke menu */
+    font-size: 3rem;               /* UKURAN FONT judul. 1rem = 16px, jadi 3rem = 48px */
+    line-height: 1.1;              /* baris judul dirapatkan */
+}
+
+/* MENU: daftar link dibuat sejajar ke samping */
+nav ul {
+    display: flex;                 /* susun anak <li> berjajar horizontal */
+    flex-wrap: wrap;               /* kalau layar sempit, menu turun ke baris bawah */
+    gap: 10px;                     /* jarak antar menu */
+    list-style: none;              /* hapus titik bullet daftar */
+}
+
+/* Tampilan tiap link menu (chip bulat) */
+nav a {
+    padding: 6px 16px;             /* ruang dalam chip: atas-bawah 6px, kiri-kanan 16px */
+    color: white;                  /* warna teks link */
+    text-decoration: none;         /* hapus garis bawah bawaan link */
+    border: 1px solid #555;        /* garis tipis abu di sekeliling chip */
+    border-radius: 99px;           /* angka sangat besar = bulat penuh seperti pil */
+}
+
+/* Saat kursor berada di atas link */
+nav a:hover {
+    background: var(--aksen);      /* latar berubah lime */
+    border-color: var(--aksen);    /* garis ikut lime */
+    color: var(--gelap);           /* teks jadi gelap supaya terbaca di atas lime */
+}
+
+/* =====================================================================
+   KARTU KONTEN
+   ===================================================================== */
+
+/* <main> membungkus semua kartu.
+   display: grid + gap = kartu tersusun ke bawah dengan jarak 24px di antaranya. */
+main { display: grid; gap: 24px; margin: 24px 0; }
+
+section {
+    padding: 28px;                       /* ruang dalam kartu */
+    background: white;                   /* warna latar kartu */
+    border: 1px solid var(--garis);      /* garis tepi tipis */
+    border-radius: 12px;                 /* sudut kartu membulat */
+}
+
+/* Judul bagian di dalam kartu */
+h2 {
+    margin-bottom: 16px;                 /* jarak judul ke isi di bawahnya */
+    font-size: 1.6rem;                   /* UKURAN FONT: 1.6 x 16px = 25,6px */
+}
+h3 { margin-bottom: 4px; }               /* subjudul kecil (tebal bawaan browser) */
+
+/* Blok <article> di dalam kartu (misal Tentang Saya, Cita-Cita). */
+article {
+    padding: 12px 0;                       /* jarak atas-bawah dalam blok */
+    border-bottom: 1px solid var(--garis); /* garis pemisah antar blok */
+}
+article:last-child { border-bottom: none; }/* blok terakhir tidak perlu garis */
+
+/* Keterangan kecil di bagian atas blok (misal tahun) */
+article header p {
+    color: var(--abu);                     /* WARNA TEKS abu */
+    font-size: 0.9rem;                     /* UKURAN FONT sedikit lebih kecil dari teks biasa */
+}
+article p + p { margin-top: 10px; }        /* paragraf kedua dst. diberi jarak dari paragraf sebelumnya */
+
+/* =====================================================================
+   ASIDE (kartu catatan samping, berwarna lime pucat)
+   ===================================================================== */
+aside {
+    padding: 28px;
+    background: #E6F7B5;           /* WARNA LATAR lime pucat */
+    border-radius: 12px;
+    overflow-wrap: anywhere;       /* teks panjang (misal URL) boleh dipotong supaya tidak keluar kartu */
+}
+
+/* =====================================================================
+   DATA DIRI / INFO (tag <dl>: label di kiri, isi di kanan)
+   ===================================================================== */
+dl {
+    display: grid;
+    grid-template-columns: 160px 1fr;  /* kolom 1 (label) lebar 160px, kolom 2 (isi) sisanya */
+    gap: 10px;                         /* jarak antar baris dan kolom */
+}
+dt { color: var(--abu); }              /* <dt> = label: abu supaya kalah mencolok dari isi */
+dd { font-weight: 500; }               /* <dd> = isi: sedikit tebal supaya menonjol */
+
+/* Cadangan: kalau data masih ditulis <h2> per baris, tampilkan sebagai baris biasa */
+#Data h2 {
+    padding: 10px 0;
+    font: 500 1rem system-ui;          /* singkatan font: tebal 500, ukuran 1rem, jenis system-ui */
+    border-bottom: 1px solid var(--garis);
+}
+
+/* =====================================================================
+   FOOTER (teks hak cipta di bawah)
+   ===================================================================== */
+footer {
+    margin-top: 32px;                  /* jarak dari konten di atasnya */
+    color: var(--abu);                 /* warna teks abu */
+    font-size: 0.9rem;                 /* ukuran kecil */
+    text-align: center;                /* rata tengah */
+}
+
+/* =====================================================================
+   LAYAR HP
+   Aturan di dalam @media hanya aktif saat lebar layar 600px atau kurang.
+   ===================================================================== */
+@media (max-width: 600px) {
+    h1 { font-size: 2.2rem; }          /* judul diperkecil supaya muat di HP */
+    body > header, section, aside { padding: 20px; }              /* ruang dalam dikurangi, layar HP sempit */
+    dl { grid-template-columns: 1fr; gap: 2px; }  /* label dan isi ditumpuk ke bawah (1 kolom) */
+    dd { margin-bottom: 10px; }
+}

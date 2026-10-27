@@ -1,0 +1,290 @@
+/* =====================================================================
+   VARIABEL WARNA
+   Semua warna disimpan di sini. Mau ganti warna seluruh halaman?
+   Cukup ubah kode warna (#xxxxxx) di bawah ini. Bagian lain tidak perlu disentuh.
+   Cara pakai di tempat lain: var(--nama)  contoh: color: var(--gelap);
+   ===================================================================== */
+:root {
+    --gelap: #0E1F1B;   /* hijau-hitam: latar header, tombol kirim, teks utama */
+    --latar: #F5F3EE;   /* krem hangat: latar belakang halaman */
+    --garis: #E6E2D8;   /* abu-krem muda: garis pemisah dan border kartu */
+    --abu:   #6B7570;   /* abu: teks kecil / keterangan */
+    --aksen: #C8F169;   /* lime: warna sorotan (hover menu, teks tombol) */
+}
+
+/* =====================================================================
+   DASAR (berlaku untuk seluruh halaman)
+   ===================================================================== */
+
+/* Reset: hapus jarak bawaan browser supaya kita atur sendiri.
+   box-sizing: border-box = padding dan border dihitung di dalam lebar elemen,
+   jadi elemen tidak "membengkak" melewati lebar yang kita tentukan. */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    max-width: 800px;                  /* lebar maksimal konten */
+    margin: 0 auto;                    /* "auto" kiri-kanan = konten berada di tengah layar */
+    padding: 24px;                     /* jarak krem di sekeliling konten */
+    background: var(--latar);          /* WARNA LATAR halaman */
+    color: var(--gelap);               /* WARNA TEKS default */
+    font-family: system-ui, sans-serif;/* JENIS FONT teks biasa: font bawaan sistem (Segoe UI, SF Pro, dll) */
+    line-height: 1.6;                  /* jarak antar baris. 1.6 = 1,6 kali tinggi huruf, nyaman dibaca */
+}
+
+/* Garis <hr> di HTML disembunyikan karena pemisah sudah dibuat oleh kartu. */
+hr { display: none; }
+
+/* =====================================================================
+   HEADER (kotak gelap di atas) + MENU
+   ===================================================================== */
+
+/* "body > header" = hanya <header> yang langsung di bawah <body>.
+   <header> di dalam <article> tidak ikut terkena aturan ini. */
+body > header {
+    padding: 40px;                 /* ruang di dalam kotak, antara tepi dan teks */
+    background: var(--gelap);      /* WARNA LATAR kotak header */
+    color: white;                  /* WARNA TEKS di dalam header */
+    border-radius: 16px;           /* kebulatan sudut. 0 = kotak tajam, makin besar makin bulat */
+}
+
+/* FONT JUDUL: Georgia adalah font serif (huruf berkaki, bergaya buku).
+   Kalau Georgia tidak ada di perangkat, browser pakai serif lain.
+   font-weight: 400 = tebal normal (bawaan judul adalah tebal 700). */
+h1, h2 { font-family: Georgia, serif; font-weight: 400; }
+
+h1 {
+    margin-bottom: 20px;           /* jarak dari judul ke menu */
+    font-size: 3rem;               /* UKURAN FONT judul. 1rem = 16px, jadi 3rem = 48px */
+    line-height: 1.1;              /* baris judul dirapatkan */
+}
+
+/* MENU: daftar link dibuat sejajar ke samping */
+nav ul {
+    display: flex;                 /* susun anak <li> berjajar horizontal */
+    flex-wrap: wrap;               /* kalau layar sempit, menu turun ke baris bawah */
+    gap: 10px;                     /* jarak antar menu */
+    list-style: none;              /* hapus titik bullet daftar */
+}
+
+/* Tampilan tiap link menu (chip bulat) */
+nav a {
+    padding: 6px 16px;             /* ruang dalam chip: atas-bawah 6px, kiri-kanan 16px */
+    color: white;                  /* warna teks link */
+    text-decoration: none;         /* hapus garis bawah bawaan link */
+    border: 1px solid #555;        /* garis tipis abu di sekeliling chip */
+    border-radius: 99px;           /* angka sangat besar = bulat penuh seperti pil */
+}
+
+/* Saat kursor berada di atas link */
+nav a:hover {
+    background: var(--aksen);      /* latar berubah lime */
+    border-color: var(--aksen);    /* garis ikut lime */
+    color: var(--gelap);           /* teks jadi gelap supaya terbaca di atas lime */
+}
+
+/* =====================================================================
+   KARTU KONTEN
+   ===================================================================== */
+
+/* <main> membungkus semua kartu.
+   display: grid + gap = kartu tersusun ke bawah dengan jarak 24px di antaranya. */
+main { display: grid; gap: 24px; margin: 24px 0; }
+
+section {
+    padding: 28px;                       /* ruang dalam kartu */
+    background: white;                   /* warna latar kartu */
+    border: 1px solid var(--garis);      /* garis tepi tipis */
+    border-radius: 12px;                 /* sudut kartu membulat */
+}
+
+/* Judul bagian di dalam kartu */
+h2 {
+    margin-bottom: 16px;                 /* jarak judul ke isi di bawahnya */
+    font-size: 1.6rem;                   /* UKURAN FONT: 1.6 x 16px = 25,6px */
+}
+h3 { margin-bottom: 4px; }               /* subjudul kecil (tebal bawaan browser) */
+
+/* =====================================================================
+   ASIDE (kartu catatan samping, berwarna lime pucat)
+   ===================================================================== */
+aside {
+    padding: 28px;
+    background: #E6F7B5;           /* WARNA LATAR lime pucat */
+    border-radius: 12px;
+    overflow-wrap: anywhere;       /* teks panjang (misal URL) boleh dipotong supaya tidak keluar kartu */
+}
+
+/* Link di dalam aside (misal link GitHub) */
+aside a {
+    color: var(--gelap);           /* warna link */
+    text-underline-offset: 3px;    /* jarak garis bawah dari teks, supaya tidak menempel */
+}
+aside a:hover { opacity: 0.7; }    /* sedikit pudar saat kursor di atasnya */
+
+/* =====================================================================
+   FORMULIR
+   ===================================================================== */
+form p { margin-bottom: 16px; }        /* jarak antar kotak isian */
+label { font-weight: 500; }            /* teks label sedikit tebal */
+
+/* Kotak isian teks, angka, dropdown, dan area pesan (checkbox dikecualikan) */
+input:not([type="checkbox"]), select, textarea {
+    width: 100%;                       /* selebar kartu */
+    margin-top: 4px;                   /* jarak dari label */
+    padding: 10px;                     /* ruang dalam kotak isian */
+    font: inherit;                     /* pakai font yang sama dengan teks sekitar (default browser beda sendiri) */
+    border: 1px solid var(--garis);    /* garis tepi tipis */
+    border-radius: 8px;                /* sudut membulat */
+}
+
+/* Saat kotak sedang diklik / diketik: beri garis gelap supaya jelas */
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--gelap); }
+
+textarea { resize: vertical; }         /* area pesan hanya bisa ditarik ke bawah, tidak melebar keluar kartu */
+
+/* =====================================================================
+   TOMBOL
+   ===================================================================== */
+button {
+    padding: 10px 20px;                /* ukuran tombol: atas-bawah 10px, kiri-kanan 20px */
+    font: inherit;                     /* samakan font dengan teks sekitar */
+    background: white;                 /* tombol biasa (Reset): putih */
+    border: 1px solid var(--garis);
+    border-radius: 8px;
+    cursor: pointer;                   /* kursor berubah jadi tangan saat di atas tombol */
+}
+
+/* Khusus tombol Kirim: gelap dengan teks lime supaya paling menonjol */
+button[type="submit"] {
+    background: var(--gelap);
+    border-color: var(--gelap);
+    color: var(--aksen);
+}
+
+button:hover { opacity: 0.8; }         /* sedikit pudar saat kursor di atas tombol */
+
+/* =====================================================================
+   APLIKASI PROYEK (formulir, statistik, pencarian, daftar proyek)
+   Kelas .proyek-item, .badge, .aksi dibuat oleh proyek.js lewat JavaScript.
+   ===================================================================== */
+
+/* ---------- Formulir: 2 kolom di layar lebar ---------- */
+#form-proyek {
+    display: grid;
+    grid-template-columns: 1fr 1fr;    /* dua kolom sama lebar */
+    gap: 16px 20px;                    /* jarak antar baris 16px, antar kolom 20px */
+}
+#form-proyek p { margin: 0; }          /* jarak sudah diatur oleh gap di atas */
+#form-proyek br { display: none; }     /* <br> di HTML tidak diperlukan lagi */
+#form-proyek label:not(.centang) { display: block; margin-bottom: 4px; }
+
+/* Judul (p ke-1), checkbox (p ke-4), dan tombol (p ke-5) memakai selebar 2 kolom */
+#form-proyek p:nth-child(1),
+#form-proyek p:nth-child(4),
+#form-proyek p:nth-child(5) { grid-column: 1 / -1; }
+
+/* Baris tombol (Simpan dan Batal edit) sejajar dengan jarak */
+#form-proyek p:nth-child(5) { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Baris checkbox: kotak centang dan teks sejajar */
+.centang { display: flex; align-items: center; gap: 8px; }
+
+/* Pesan error validasi: hanya muncul kalau ada isinya */
+.error {
+    display: block;
+    margin-top: 4px;
+    color: #B42318;                    /* WARNA TEKS merah */
+    font-size: 0.85rem;                /* UKURAN FONT kecil */
+}
+.error:empty { display: none; }        /* kosong = tidak memakan tempat */
+
+/* ---------- Kartu statistik ---------- */
+.statistik {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 1.6fr;  /* 3 kotak biasa + 1 kotak lebih lebar untuk anggaran */
+    gap: 12px;
+}
+.stat {
+    padding: 20px;
+    background: white;
+    border: 1px solid var(--garis);
+    border-radius: 12px;
+}
+.stat strong {
+    display: block;                    /* angka di baris sendiri, label di bawahnya */
+    font: 400 1.75rem Georgia, serif;  /* FONT angka: serif, 1.75rem (28px) */
+    overflow-wrap: anywhere;           /* angka panjang boleh turun baris, tidak keluar kotak */
+}
+.stat span { color: var(--abu); font-size: 0.9rem; }  /* label kecil abu */
+
+/* ---------- Baris judul daftar + kotak cari ---------- */
+.bar-daftar {
+    display: flex;
+    justify-content: space-between;    /* judul di kiri, kotak cari di kanan */
+    align-items: center;
+    flex-wrap: wrap;                   /* di layar sempit, kotak cari turun ke bawah judul */
+    gap: 12px;
+}
+.bar-daftar h2 { margin: 0; }
+#cari { width: 260px; max-width: 100%; margin-top: 0; background: white; }
+
+/* ---------- Daftar proyek ---------- */
+#daftar { display: grid; gap: 12px; margin-top: -12px; }  /* margin negatif merapatkan daftar ke baris judul */
+
+.proyek-item {
+    display: flex;                     /* info di kiri, tombol di kanan */
+    justify-content: space-between;
+    align-items: center;               /* sejajar vertikal di tengah */
+    gap: 16px;
+    padding: 20px;
+    background: white;
+    border: 1px solid var(--garis);
+    border-radius: 12px;
+}
+.proyek-item h3 { font-size: 1.05rem; }
+.proyek-item .meta { margin: 2px 0 10px; color: var(--abu); font-size: 0.9rem; }
+
+/* Lencana status */
+.badge {
+    padding: 2px 10px;
+    font-size: 0.8rem;
+    background: var(--garis);          /* Dalam Pengerjaan: abu-krem */
+    border-radius: 99px;               /* bentuk pil */
+}
+.badge.selesai { background: var(--aksen); color: var(--gelap); }  /* Selesai: lime */
+
+/* Tombol aksi dibuat lebih kecil dari tombol form */
+.aksi { display: flex; flex-wrap: wrap; gap: 8px; }
+.aksi button { padding: 6px 14px; font-size: 0.9rem; }
+button.hapus { color: #B42318; }       /* tombol Hapus: teks merah sebagai peringatan */
+
+/* Pesan saat daftar kosong */
+.kosong { padding: 24px; color: var(--abu); text-align: center; }
+
+/* ---------- Layar HP ---------- */
+@media (max-width: 600px) {
+    #form-proyek { grid-template-columns: 1fr; }                 /* formulir jadi 1 kolom */
+    #form-proyek p:nth-child(n) { grid-column: auto; }
+    .statistik { grid-template-columns: 1fr 1fr; }               /* statistik 2 kolom */
+    #cari { width: 100%; }
+    .proyek-item { flex-direction: column; align-items: flex-start; }  /* info di atas, tombol di bawah */
+}
+
+/* =====================================================================
+   FOOTER (teks hak cipta di bawah)
+   ===================================================================== */
+footer {
+    margin-top: 32px;                  /* jarak dari konten di atasnya */
+    color: var(--abu);                 /* warna teks abu */
+    font-size: 0.9rem;                 /* ukuran kecil */
+    text-align: center;                /* rata tengah */
+}
+
+/* =====================================================================
+   LAYAR HP
+   Aturan di dalam @media hanya aktif saat lebar layar 600px atau kurang.
+   ===================================================================== */
+@media (max-width: 600px) {
+    h1 { font-size: 2.2rem; }          /* judul diperkecil supaya muat di HP */
+    body > header, section, aside { padding: 20px; }              /* ruang dalam dikurangi, layar HP sempit */
+}
